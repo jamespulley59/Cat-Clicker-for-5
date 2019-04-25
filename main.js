@@ -1,26 +1,38 @@
-// model
-var model = {
-
-    cat: function (name, picture, clicks = 0) {
+// model 
+class cat {
+       constructor(name, picture, clicks = 0) {
         this.name = name;
         this.picture = picture;
         this.clicks = clicks;
-    },
-    
+    }
+}
+var model = {
  
-cat1: new cat('My Little Kitty', 'images/cat1.jpg'),
-cat2: new cat('Cat and his Clown', 'images/cat2.jpg'),
-cat3: new cat('cat3', 'images/cat3.jpg'),
-cat4: new cat('cat4', 'images/cat4.jpg'),
-cat5: new cat('cat5', 'images/cat5.jpeg'),
+cats: [
+new cat('My Little Kitty', 'images/cat1.jpg'),
+new cat('Cat and his Clown', 'images/cat2.jpg'),
+new cat('cat3', 'images/cat3.jpg'),
+new cat('cat4', 'images/cat4.jpg'),
+new cat('cat5', 'images/cat5.jpeg'),
 
-cats: [cat1, cat2, cat3, cat4, cat5]
+],
+addCat: function(catName, catPicture) {
+    const cat = {
+        name: catName,
+        picture: catPicture,
+        clicks: 0
+    }
+    model.cats.push(cat);
+}
 }
 
 //octopus
 var octopus = {
     getCats: function() {
         return model.cats;
+    },
+    addCat: function(catName, catPicture) {
+        model.addCat(catName, catPicture);
     }
 }
 
@@ -29,6 +41,8 @@ var view = {
     init: function() {
         
 const leftColumn = document.querySelector('.col-4');
+
+leftColumn.innerHTML = '';
 
 const ul = document.createElement('ul');
 ul.className = 'list-group';
@@ -47,6 +61,16 @@ for(let cat of octopus.getCats) {
 
 
  leftColumn.appendChild(ul);
+ //add admin btn
+ const adminBtn = document.createElement('button');
+ adminBtn.textContent = 'Add New Cat';
+ adminBtn.className = 'btn btn-warning mt-3';
+ adminBtn.addEventListener('click', this.showForm);
+
+form.addEventListener('submit', this.addCat);
+ leftColumn.appendChild(adminBtn);
+ const form = document.createElement('form');
+
 },
  render: function(cat) {
     }
@@ -72,4 +96,62 @@ const displayCat = (cat) => {
     const h2 = document.createElement('h2');
     h2.textContent =`Clicks: ${cat.clicks}`;    
     rightColumn.appendChild(h2);
+},
+showForm: function() {
+    const form = document.querySelector('form');
+          
+    form.innerHTML = '';
+// name
+    const nameGroup = document.createElement('div');
+    nameGroup.className = 'form-group';
+
+    const nameLabel = document.createElement('label');
+    nameLabel.textContent = 'Cat Name';
+    nameLabel.setAttribute('for', 'catName');
+
+    const nameInput = document.createElement('input');
+    nameInput.className = 'form-control';    
+    nameInput.setAttribute('id', 'catName');
+
+    nameGroup.appendChild(NameLabel);
+    nameGroup.appendChild(nameInput);
+    form.appendChild(nameGroup); 
+// img
+    const imgGroup = document.createElement('div');
+    imgGroup.className = 'form-group';
+
+    const imgLabel = document.createElement('label');
+    imgLabel.textContent = 'Cat Picture';
+    imgLabel.setAttribute('for', 'catPicture');
+
+    const imgInput = document.createElement('input');
+    imgInput.className = 'form-control';    
+    imgInput.setAttribute('id', 'catPicture');
+
+    imgGroup.appendChild(imgLabel);
+    imgGroup.appendChild(imgInput);
+    form.appendChild(imgGroup); 
+    
+    const submitBtn = document.createElement('button');
+    submitBtn.textContent = 'Submit';
+    submitBtn.className = "btn btn-success";
+    form.appendChild(submitBtn);
+
+    const cancelBtn = document.createElement('button');
+    cancelBtn.textContent = 'Cancel';
+    cancelBtn.className = "btn btn-danger float-right";
+    cancelBtn.setAttribute('type', 'button');
+    form.appendChild(cancelBtn);
+    
+},
+
+addCat: function() {
+    e.preventDefault();
+    const catName = document.querySelector('#catName').value;
+    const catPicture = document.querySelector('#catPicture').value;
+    octopus.addCat(catName, catPicture);
+    this.init();
 }
+}
+
+view.init();
