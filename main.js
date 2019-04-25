@@ -15,7 +15,7 @@ new cat('cat3', 'images/cat3.jpg'),
 new cat('cat4', 'images/cat4.jpg'),
 new cat('cat5', 'images/cat5.jpeg'),
 ],
-addCat: function(catName, catPicture) {         const cat = {
+addCat: function(catName, catPicture) {                 const cat = {
         name: catName,
         picture: catPicture,
         clicks: 0
@@ -46,8 +46,7 @@ var view = {
         for(let cat of octopus.getCats()) {
             const li = document.createElement('li');
             li.className = 'list-group-item';
-            li.textContent = cat.name;
-            ul.appendChild(li);
+            li.textContent = cat.name;            
             li.addEventListener('click', ()=>{
                 this.render(cat);
             })
@@ -100,7 +99,7 @@ var view = {
         nameInput.className = 'form-control';    
         nameInput.setAttribute('id', 'catName');
 
-        nameGroup.appendChild(NameLabel);
+        nameGroup.appendChild(nameLabel);
         nameGroup.appendChild(nameInput);
         form.appendChild(nameGroup); 
         // img
@@ -121,7 +120,7 @@ var view = {
     
         const submitBtn = document.createElement('button');
         submitBtn.textContent = 'Submit';
-        submitBtn.className = "btn btn-success";
+        submitBtn.className = "btn btn-success float-left";
         form.appendChild(submitBtn);
 
         const cancelBtn = document.createElement('button');
