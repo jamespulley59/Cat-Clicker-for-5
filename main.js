@@ -6,6 +6,7 @@ var model = {
         this.picture = picture;
         this.clicks = clicks;
     },
+    
  
 cat1: new cat('My Little Kitty', 'images/cat1.jpg'),
 cat2: new cat('Cat and his Clown', 'images/cat2.jpg'),
