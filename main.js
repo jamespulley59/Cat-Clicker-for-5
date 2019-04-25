@@ -1,19 +1,19 @@
 // model
-var model = {
-
-    cat: function (name, picture, clicks = 0) {
+class cat {
+        constructor(name, picture, clicks = 0) {
         this.name = name;
         this.picture = picture;
         this.clicks = clicks;
-    },
- 
-cat1: new cat('My Little Kitty', 'images/cat1.jpg'),
-cat2: new cat('Cat and his Clown', 'images/cat2.jpg'),
-cat3: new cat('cat3', 'images/cat3.jpg'),
-cat4: new cat('cat4', 'images/cat4.jpg'),
-cat5: new cat('cat5', 'images/cat5.jpeg'),
-
-cats: [cat1, cat2, cat3, cat4, cat5]
+    }
+}
+var model = {
+    cats: [
+        new cat('My Little Kitty', 'images/cat1.jpg'),
+        new cat('Cat and his Clown', 'images/cat2.jpg'),
+        new cat('cat3', 'images/cat3.jpg'),
+        new cat('cat4', 'images/cat4.jpg'),
+        new cat('cat5', 'images/cat5.jpeg'),
+    ]
 }
 
 //octopus
